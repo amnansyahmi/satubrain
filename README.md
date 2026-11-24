@@ -56,3 +56,7 @@ The core uses local SQLite and has zero third-party runtime dependencies. Exampl
 SatuBrain is currently a release candidate. If it helps you switch coding agents without losing context, consider starring the repository. Feedback and reproducible bug reports are welcome.
 
 MIT licensed.
+
+## Website hosting
+
+The portfolio page lives in `site/` and uses synthetic examples. The repository's `vercel.json` selects the **Other** framework preset and serves that directory as static files. For a local preview, run `python -m http.server --bind 127.0.0.1 --directory site`. Run `satubrain dashboard` separately to access your local memory.

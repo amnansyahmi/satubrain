@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="SatuBrain is local task memory for Claude Code, Codex, GitHub Copilot and Cursor. Switch AI agents and pick up where you left off.">
+  <meta name="theme-color" content="#151716">
+  <title>SatuBrain — Local memory for coding agents</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="demo.js" defer></script>
+</head>
+<body>
+  <header class="wrap nav">
+    <a class="brand" href="./"><span class="mark" aria-hidden="true">S</span>SatuBrain</a>
+    <nav aria-label="Main"><a href="#install">Install</a><a href="https://github.com/amnansyahmi/satubrain">GitHub ↗</a></nav>
+  </header>
+  <main>
+    <section class="wrap hero">
+      <div>
+        <p class="eyebrow">Local memory for coding agents</p>
+        <h1>Switch agents.<br><em>Keep your place.</em></h1>
+        <p class="intro">Carry decisions, handoffs, and selected chat history between Claude Code, Codex, GitHub Copilot, and Cursor.</p>
+        <div class="actions"><a class="button" href="#install">Try it locally <span aria-hidden="true">↓</span></a><a class="secondary" href="https://github.com/amnansyahmi/satubrain">View source ↗</a></div>
+      </div>
+      <section class="terminal" aria-labelledby="demo-heading">
+        <div class="terminal-heading"><h2 id="demo-heading">Task handoff</h2><span>Synthetic demo</span></div>
+        <div class="steps" aria-label="Demo steps">
+          <button type="button" aria-pressed="true" data-step="save">Save</button>
+          <button type="button" aria-pressed="false" data-step="resume">Resume</button>
+          <button type="button" aria-pressed="false" data-step="search">Search</button>
+        </div>
+        <div class="screen" aria-live="polite">
+          <p class="context" id="context">CLAUDE CODE · DEMO-17 · FEAT/IMPORTS</p>
+          <pre id="command">$ satubrain handoff --task DEMO-17 --agent claude "Import tests passed. Verify cancellation on large files next."</pre>
+          <p id="result">Handoff saved. Import tests passed. Next, verify cancellation on large files.</p>
+        </div>
+      </section>
+    </section>
+    <section class="wrap features" aria-label="How SatuBrain works">
+      <article><h2>One task, four agents</h2><p>Use the same task ID across MCP clients. Project and Git branch scopes keep the context relevant.</p></article>
+      <article><h2>Pick up quickly</h2><p>Search saved decisions and conversation turns. Resume with the latest handoff and a bounded amount of context.</p></article>
+      <article><h2>Memory on your device</h2><p>SQLite and the dashboard run locally. Encrypted folder sync is optional.</p></article>
+    </section>
+    <section class="wrap install" id="install">
+      <div><p class="eyebrow">Quick start</p><h2>Try the local demo</h2><p>Requires Python 3.11+ and pipx. The demo uses a temporary SQLite database and sample data.</p><a href="https://github.com/amnansyahmi/satubrain/blob/main/docs/agents.md">Set up your coding agent ↗</a></div>
+      <pre><code>pipx install git+https://github.com/amnansyahmi/satubrain.git
+satubrain doctor
+satubrain demo</code></pre>
+    </section>
+  </main>
+  <footer class="wrap footer"><span>SatuBrain · MIT licensed</span><a href="https://github.com/amnansyahmi/satubrain/issues">GitHub issues ↗</a></footer>
+</body>
+</html>
