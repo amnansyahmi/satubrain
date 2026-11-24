@@ -44,6 +44,7 @@ Run `satubrain config codex --task DEMO-17` to generate a client configuration. 
 
 The core uses local SQLite and has zero third-party runtime dependencies. Examples and tests use synthetic data. SatuBrain stores data in `~/.satubrain/memory.sqlite3` by default. Use `SATUBRAIN_DB` or the global `--db` option to select a different database.
 
+- [Cross-platform installation](docs/INSTALLATION.md)
 - [Agent configuration](docs/agents.md)
 - [History, import/export and encrypted sync](docs/data.md)
 - [Security and trust model](SECURITY.md)
