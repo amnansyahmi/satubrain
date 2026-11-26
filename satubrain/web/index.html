@@ -33,7 +33,7 @@
       <section aria-label="Memories" id="memories"></section>
     </main>
   </div>
-  <dialog id="editor">
+  <dialog id="editor" aria-labelledby="editor-title">
     <form id="capture">
       <div class="dialog-heading"><h2 id="editor-title">Add memory</h2><button class="icon" type="button" data-close="editor" aria-label="Close">×</button></div>
       <label>Task <input id="entry-task" required maxlength="240"></label>
@@ -43,7 +43,7 @@
       <button class="primary" id="save" type="submit">Save memory</button>
     </form>
   </dialog>
-  <dialog id="details">
+  <dialog id="details" aria-labelledby="detail-title">
     <div class="dialog-heading"><h2 id="detail-title">Memory</h2><button class="icon" type="button" data-close="details" aria-label="Close">×</button></div>
     <p class="subtitle" id="detail-meta"></p>
     <pre id="detail-text"></pre>
