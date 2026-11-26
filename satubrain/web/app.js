@@ -204,6 +204,7 @@ byId("forget").addEventListener("click", async () => {
     byId("details").close();
     await refreshScopes();
     await loadMemories();
+    (byId("memories").querySelector("button") || byId("query")).focus();
   } catch (error) {
     byId("detail-notice").textContent = error.message;
     button.disabled = false;

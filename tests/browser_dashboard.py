@@ -11,6 +11,41 @@ from satubrain.scope import Workspace
 from satubrain.store import Store
 
 
+def tab_to(page, locator, limit=40):
+    """Press Tab until `locator` has focus, proving it is keyboard-reachable."""
+    for _ in range(limit):
+        if locator.evaluate("el => el === document.activeElement"):
+            return
+        page.keyboard.press("Tab")
+    raise AssertionError("control is not reachable with Tab")
+
+
+def keyboard_flow(browser, url, handoff):
+    """Search, inspect and delete a memory using only the keyboard."""
+    page = browser.new_page(viewport={"width": 960, "height": 590})
+    page.goto(url)
+    expect(page.locator(".entry")).to_have_count(2)
+    searchbox = page.get_by_role("searchbox")
+    tab_to(page, searchbox)
+    page.keyboard.type("cancellation")
+    expect(page.locator(".entry")).to_have_count(1)
+    entry = page.get_by_role("button", name=handoff, exact=False)
+    tab_to(page, entry)
+    page.keyboard.press("Enter")
+    expect(page.locator("#detail-text")).to_have_text(handoff)
+    page.keyboard.press("Escape")
+    expect(entry).to_be_focused()  # focus returns to the opener
+    page.keyboard.press("Enter")
+    delete = page.get_by_role("button", name="Delete memory")
+    expect(delete).to_be_enabled()
+    tab_to(page, delete)
+    page.keyboard.press("Enter")
+    page.keyboard.press("Enter")  # same button, now "Confirm deletion"
+    expect(page.locator(".entry")).to_have_count(0)
+    expect(searchbox).to_be_focused()  # focus must not fall back to <body>
+    page.close()
+
+
 def run():
     project, branch, task = "github.com/example/parcel", "feat/bulk-import", "DEMO-17"
     handoff = "Import tests passed. Verify cancellation on large files next."
@@ -58,6 +93,7 @@ def run():
                 mobile.get_by_role("button", name="DEMO-12", exact=False).click()
                 expect(mobile.get_by_text("Check the retry limit", exact=False)).to_be_visible()
                 assert mobile.evaluate("document.documentElement.scrollWidth === window.innerWidth")
+                keyboard_flow(browser, url, handoff)
                 assert not errors, errors
                 browser.close()
         finally:
